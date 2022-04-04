@@ -1,0 +1,16 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.2/containers/docker-existing-dockerfile
+{
+	"name": "C/C++ Development",
+	//"context": "..",
+	"dockerFile": "Dockerfile",
+	"settings": {
+		"editor.autoIndent": "advanced",
+		"editor.fontSize": 11,
+		"editor.formatOnSave": true
+	},
+	"extensions": [
+		"ms-vscode.cpptools",
+		"twxs.cmake"
+	]
+}

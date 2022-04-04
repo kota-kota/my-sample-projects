@@ -1,0 +1,4 @@
+---
+BasedOnStyle:  Microsoft
+AlwaysBreakTemplateDeclarations: true
+FixNamespaceComments: true
