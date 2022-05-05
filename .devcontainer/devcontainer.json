@@ -1,9 +1,12 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.231.2/containers/docker-existing-dockerfile
 {
-	"name": "C/C++ Development",
-	//"context": "..",
-	"dockerFile": "Dockerfile",
+	"name": "clang-ubuntu",
+	"image": "ghcr.io/kota-kota/clang-ubuntu:latest",
+	"containerUser": "user",
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind",
+	],
 	"settings": {
 		"editor.autoIndent": "advanced",
 		"editor.fontSize": 11,
