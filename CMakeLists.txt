@@ -12,3 +12,4 @@ endif()
 
 add_subdirectory(standard)
 add_subdirectory(thread)
+add_subdirectory(logger)
