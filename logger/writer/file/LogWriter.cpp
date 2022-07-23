@@ -19,10 +19,10 @@ class DateTime
     DateTime()
     {
         std::time_t t = std::time(nullptr);
-#if WIN32
+#ifdef WIN32
         (void)::localtime_s(&now_, &t);
 #else
-        localtime_r(&now_, &t);
+        localtime_r(&t, &now_);
 #endif
 
         auto epoch_time = system_clock::now().time_since_epoch();

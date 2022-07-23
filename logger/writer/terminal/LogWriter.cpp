@@ -3,7 +3,6 @@
 #include <chrono>
 #include <cstdio>
 #include <ctime>
-#include <time.h>
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
