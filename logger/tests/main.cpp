@@ -30,11 +30,19 @@ void test_directory()
         printf("%d -> %s\n", ok, dir.c_str());
     }
     {
+#ifdef WIN32
         ok = fw::make_directory(dir = "C:\\");
+#else
+        ok = fw::make_directory(dir = "/usr/dir");
+#endif
         printf("%d -> %s\n", ok, dir.c_str());
     }
     {
+#ifdef WIN32
         ok = fw::make_directory(dir = "C:\\workspace\\my-sample-projects\\build_windows\\logger\\tests\\dir4");
+#else
+        ok = fw::make_directory(dir = "/workspaces/my-sample-projects/build_clang/logger/tests/dir4");
+#endif
         printf("%d -> %s\n", ok, dir.c_str());
     }
     {

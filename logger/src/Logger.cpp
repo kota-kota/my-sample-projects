@@ -35,11 +35,12 @@ void Logger::output(const std::string level, const std::string tag, const char *
     std::string strlog;
     {
         va_list va;
-        va_start(va, format);
 
         // 実際の文字数を取得する(終端NULL文字は含まない)
         char tmp[8];
+        va_start(va, format);
         int32_t size = std::vsnprintf(tmp, sizeof(tmp), format, va);
+        va_end(va);
 
         // 実際の文字数分のメモリを確保し取得する
         int32_t bufsize = size + 1;
@@ -48,6 +49,7 @@ void Logger::output(const std::string level, const std::string tag, const char *
         {
             return;
         }
+        va_start(va, format);
         std::vsnprintf(buf, bufsize, format, va);
         va_end(va);
         strlog = buf;

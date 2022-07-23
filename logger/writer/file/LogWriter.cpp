@@ -34,7 +34,7 @@ class DateTime
     std::string logTimeString()
     {
         char datetime_sec[128];
-        strftime(datetime_sec, sizeof(datetime_sec), "%Y-%d-%m %H:%M:%S", &now_);
+        strftime(datetime_sec, sizeof(datetime_sec), "%Y-%m-%d %H:%M:%S", &now_);
 
         char datetime_millisec[128];
         snprintf(datetime_millisec, sizeof(datetime_millisec), "%s.%03d", datetime_sec, millisec_);

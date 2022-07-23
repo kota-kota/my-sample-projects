@@ -2,7 +2,9 @@
 #include <cstdio>
 
 #include <algorithm>
+#ifdef WIN32
 #include <direct.h>
+#endif
 #include <istream>
 #include <sstream>
 #include <string>
@@ -11,7 +13,7 @@
 
 namespace
 {
-#if WIN32
+#ifdef WIN32
 constexpr char PATH_SEP = '\\';
 #else
 constexpr char PATH_SEP = '/';
@@ -47,7 +49,11 @@ Result make_directory(const std::string dirpath)
 
     // ディレクトリ作成
     Result res = Result::OK;
+#ifdef WIN32
     if (_mkdir(dirpath.c_str()) == 0)
+#else
+    if (mkdir(dirpath.c_str(), 0755) == 0)
+#endif
     {
         // printf("Success to make directory [%s]\n", dirpath.c_str());
         res = Result::OK;
@@ -62,7 +68,7 @@ Result make_directory(const std::string dirpath)
 Result make_directory_recursive(const std::string dirpath)
 {
     std::string s = dirpath;
-#if WIN32
+#ifdef WIN32
     std::replace(s.begin(), s.end(), '/', '\\');
 #endif
     // printf("Replace %s -> %s\n", dirpath.c_str(), s.c_str());

@@ -3,6 +3,7 @@
 #include <chrono>
 #include <cstdio>
 #include <ctime>
+#include <time.h>
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -15,10 +16,10 @@ std::string currentDateTime()
 {
     std::time_t t = std::time(nullptr);
     std::tm now;
-#if WIN32
+#ifdef WIN32
     (void)::localtime_s(&now, &t);
 #else
-    localtime_r(&now, &t);
+    localtime_r(&t, &now);
 #endif
 
     auto epoch_time = system_clock::now().time_since_epoch();
@@ -28,7 +29,7 @@ std::string currentDateTime()
     int32_t millisec = static_cast<int32_t>(millisec_since_epoch - (sec_since_epoch * 1000));
 
     char datetime_sec[128];
-    strftime(datetime_sec, sizeof(datetime_sec), "%m-%d-%Y %H:%M:%S", &now);
+    strftime(datetime_sec, sizeof(datetime_sec), "%Y-%m-%d %H:%M:%S", &now);
 
     char datetime_millisec[128];
     snprintf(datetime_millisec, sizeof(datetime_millisec), "%s.%03d", datetime_sec, millisec);
